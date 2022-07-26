@@ -1,18 +1,40 @@
 package file;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ReadFromFile {
     public static void readFromFile1() throws IOException {
-        String path = "D:\\JAVA\\Data\\departments.txt";
+        String path = "D:\\JAVA\\Data\\data33test.csv";
 
         FileInputStream stream = new FileInputStream(path);
         int length = stream.available();
         byte[] data = new byte[length];
         int read = stream.read(data);
         String text = new String(data);
-        System.out.println(text);
+
+        ArrayList<String[]> lineWords = new ArrayList<>();
+
+        String[] lines = text.split("\n");
+        for (String line : lines) {
+            String[] words = line.split(";");
+            lineWords.add(words);
+        }
+
+
+//        for (String[] words : lineWords) {
+//            System.out.println(Arrays.toString(words));
+//        }
+
+        for (String[] words : lineWords) {
+            for (String word : words) {
+                System.out.print(word);
+            }
+            System.out.println();
+        }
+
     }
 
     public static void readFromFile2(File file) {
